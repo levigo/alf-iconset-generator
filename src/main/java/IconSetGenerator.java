@@ -72,7 +72,7 @@ public class IconSetGenerator {
     iconGenerator.assembleXML(new FileOutputStream(target));
   }
 
-  private void assembleXML(OutputStream outputStream) throws Exception {
+  void assembleXML(OutputStream outputStream) throws Exception {
     List<File> icons = scanSourceFolder();
     List<File> validIcons = validate(icons);
     Document dom = createDOM(validIcons);
