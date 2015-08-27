@@ -5,7 +5,14 @@
 	<artifactId>alf-iconset-generator</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<description>A generator for icon sets for the ALF format in the jadice document platform</description>
-
+	
+	<licenses>
+		<license>
+			<name>BSD 3-clause style license</name>
+			<url>http://opensource.org/licenses/BSD-3-Clause</url>
+			<distribution>repo</distribution>
+    	</license>
+	</licenses>
 
 	<build>
 		<plugins>
