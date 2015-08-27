@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  targetNamespace="http://xml.levigo.com/ns/jadice/alf-icons/1.0"
+  xmlns:alf="http://xml.levigo.com/ns/jadice/alf-icons/1.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+  xs:schemaLocation="http://xml.levigo.com/ns/jadice/alf-icons/1.0 http://xml.levigo.com/ns/jadice/alf-icons/1.0/schema.xsd">
+
+  <xsd:element name="alf-icons">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">A collection of icons used in ALF (advanced list
+        format)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" ref="alf:icon"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="icon">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The definition of a single icon</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The image data encoded as Base64. Prefered image format
+            is PNG</xsd:documentation>
+        </xsd:annotation>
+        <xsd:extension base="xsd:base64Binary">
+          <xsd:attribute name="id" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The 2-letter ID of this icon as it is used in
+                ALF</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:pattern value="[A-Z0-9]{2}"/>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
+          <xsd:attribute name="format" use="required">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">The format of the image</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:string">
+                <xsd:enumeration value="PNG"></xsd:enumeration>
+                <xsd:enumeration value="GIF"></xsd:enumeration>
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
