@@ -5,13 +5,13 @@
 	<artifactId>alf-iconset-generator</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<description>A generator for icon sets for the ALF format in the jadice document platform</description>
-	
+
 	<licenses>
 		<license>
 			<name>BSD 3-clause style license</name>
 			<url>http://opensource.org/licenses/BSD-3-Clause</url>
 			<distribution>repo</distribution>
-    	</license>
+		</license>
 	</licenses>
 
 	<build>
@@ -43,20 +43,25 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>			
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>xmlunit</groupId>
 			<artifactId>xmlunit</artifactId>
 			<version>1.6</version>
-			<scope>test</scope>			
+			<scope>test</scope>
 		</dependency>
-	
+
 	</dependencies>
 </project>

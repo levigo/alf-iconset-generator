@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,6 +26,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOCase;
+import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -79,14 +83,7 @@ public class IconSetGenerator {
 
   private List<File> scanSourceFolder() {
     System.out.println("Scanning source folder for icon files");
-    final File[] icons = sourceFolder.listFiles((File dir, String name) -> {
-      for (String extension : IMAGE_FORMATS) {
-        if (name.toLowerCase().endsWith("." + extension.toLowerCase())) {
-          return true;
-        }
-      }
-      return false;
-    });
+    final File[] icons = sourceFolder.listFiles((FilenameFilter) new SuffixFileFilter(IMAGE_FORMATS, IOCase.INSENSITIVE));
     return Arrays.asList(icons);
   }
 
@@ -122,32 +119,14 @@ public class IconSetGenerator {
     for (File iconFile : validIcons) {
       final Element icon = doc.createElementNS(NAMESPACE, "icon");
       icon.setPrefix(PREFIX);
-      icon.setAttribute("id", removeExtension(iconFile));
-      icon.setAttribute("format", getExtension(iconFile).toUpperCase());
+      icon.setAttribute("id", FilenameUtils.getBaseName(iconFile.getName()));
+      icon.setAttribute("format", FilenameUtils.getExtension(iconFile.getName()).toUpperCase());
       final CDATASection cdata = doc.createCDATASection(toBase64(new FileInputStream(iconFile)));
       icon.appendChild(cdata);
       root.appendChild(icon);
     }
 
     return doc;
-  }
-
-  private String removeExtension(File f) {
-    final String name = f.getName();
-    final int idx = name.lastIndexOf(".");
-    if (idx == -1) {
-      return name;
-    }
-    return name.substring(0, idx);
-  }
-  
-  private String getExtension(File f) {
-    final String name = f.getName();
-    final int idx = name.lastIndexOf(".");
-    if (idx == -1) {
-      return name;
-    }
-    return name.substring(idx + 1);
   }
 
   static String toBase64(InputStream is) throws IOException {
