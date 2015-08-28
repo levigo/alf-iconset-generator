@@ -39,10 +39,6 @@ public class IconSetGenerator {
   
   private static final String[] IMAGE_FORMATS = {"png", "gif" };
 
-  private static final int MAX_WIDTH = 100;
-
-  private static final int MAX_HEIGHT = 16;
-
   private final File sourceFolder;
 
   public IconSetGenerator(File sourceFolder) {
@@ -102,8 +98,8 @@ public class IconSetGenerator {
   static boolean isValidIcon(File icon) {
     try {
       final BufferedImage image = ImageIO.read(icon);
-      if (image.getWidth() > MAX_WIDTH || image.getHeight() > MAX_HEIGHT) {
-        throw new IllegalArgumentException("max. dimension is " + MAX_WIDTH + "x" + MAX_HEIGHT + " px");
+      if (image.getWidth() <= 0 || image.getHeight() <= 0) {
+        throw new IllegalArgumentException("image has no dimension");
       }
       System.out.println("  " + icon.getName() + " - valid icon");
       return true;
