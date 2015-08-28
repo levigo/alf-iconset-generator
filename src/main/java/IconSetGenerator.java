@@ -1,5 +1,4 @@
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,6 +27,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOCase;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
@@ -130,13 +130,8 @@ public class IconSetGenerator {
   }
 
   static String toBase64(InputStream is) throws IOException {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    byte[] buffer = new byte[1024];
-    int len;
-    while ((len = is.read(buffer)) != -1) {
-      baos.write(buffer, 0, len);
-    }
-    return new String(Base64.getEncoder().encode(baos.toByteArray()));
+    final byte[] buffer = IOUtils.toByteArray(is);
+    return new String(Base64.getEncoder().encode(buffer));
   }
 
   private void writeDOM(Document dom, OutputStream os) throws Exception {
