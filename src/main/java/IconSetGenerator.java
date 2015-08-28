@@ -25,6 +25,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.IOUtils;
@@ -131,7 +132,7 @@ public class IconSetGenerator {
 
   static String toBase64(InputStream is) throws IOException {
     final byte[] buffer = IOUtils.toByteArray(is);
-    return new String(Base64.getEncoder().encode(buffer));
+    return new String(Base64.getEncoder().encode(buffer), Charsets.US_ASCII);
   }
 
   private void writeDOM(Document dom, OutputStream os) throws Exception {
