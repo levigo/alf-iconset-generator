@@ -118,7 +118,7 @@ public class IconSetGenerator {
     final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     dbf.setNamespaceAware(true);
     Document doc = dbf.newDocumentBuilder().newDocument();
-    final Element root = doc.createElementNS(NAMESPACE, "alf-icons");
+    final Element root = doc.createElementNS(NAMESPACE, "icons");
     root.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", //
         "xs:schemaLocation", NAMESPACE + " " + SCHEMA_LOCATION);
     root.setPrefix(PREFIX);

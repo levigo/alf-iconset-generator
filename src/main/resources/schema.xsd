@@ -5,7 +5,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
   xs:schemaLocation="http://xml.levigo.com/ns/jadice/alf-icons/1.0 http://xml.levigo.com/ns/jadice/alf-icons/1.0/schema.xsd">
 
-  <xsd:element name="alf-icons">
+  <xsd:element name="icons">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">A collection of icons used in ALF (advanced list
         format)</xsd:documentation>
