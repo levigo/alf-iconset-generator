@@ -20,6 +20,10 @@ Example: ``AA.png`` will be used as icon for the ID ``AA``
 
 The folder ``src/test/resources`` contains some example icons and the resulting XML icon set
 
+## Build Status
+
+[![Build Status](https://travis-ci.org/levigo/alf-iconset-generator.svg?branch=master)](https://travis-ci.org/levigo/alf-iconset-generator)
+
 
 ## License
 
